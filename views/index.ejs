@@ -1,11 +1,73 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
+    <meta charset="utf-8">
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <script src="/javascripts/jquery.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+    $(function(){
+        var str = 'Dear Cassi:\\****520真是个矫情的日子\\****菜四儿啊，你是个很酷的人，\\****所以给你的东西一定要用心\\'+
+                '****所以，我决定给你画个♥.\\****咦，怎么是黑色的\\****不要担心.红心生成中.......'+
+                '\\****♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ \\****♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ \\****果然要用心，今次心这么多！！'+
+                '\\****好像没有别人用代码砌成个♥帅耶..'+
+                '\\****算了，那就这样吧'+
+                '\\****我给你礼物，你如果没有回应，那就这样吧'+
+                '\\****我这么用♥，你的礼物如果没用心，那就这样吧'+
+                '\\****'+
+                '\\**Your Jackey\\**520快乐♥';
+        var body = $('body');
+        body.html('_');
+
+        var indexCursor = 0;
+        var timerBegin = setInterval(function(){
+            if(indexCursor%2){
+                body.html('');
+            }else{
+                body.html('_');
+            }
+            indexCursor++;
+        },300);
+
+        var temp = str.split('');
+        var len = temp.length;
+        var index = 0;
+        var s = '';
+        var heartCount = 0;
+        setTimeout(function(){
+            clearInterval(timerBegin);
+            var timer = setInterval(function(){
+                if(index < len){
+                    var cha = temp[index];
+                    if(cha ==='\\'){
+                        cha = '<br/>';
+                    }
+                    if(cha === '*'){
+                        cha = '&nbsp;';
+                    }
+                    if(cha ==='♥' && heartCount==0){
+                        cha = '<span style="color:black;">♥</span>';
+                        heartCount++;
+                    }
+                    if(cha ==='♥' &&heartCount!=0){
+                        cha = '<span style="color:red;">♥</span>';
+                    }
+
+                    s+=cha;
+                    index++;
+                    body.html(s+'_');
+                }else{
+                    clearInterval(timer);
+                }
+            },200);
+        },3000);
+
+    });
+</script>
 </html>
